@@ -1,0 +1,14 @@
+Copyright (c) 2015–2025 Dan Landon. All rights reserved.
+
+Permission is granted to use this software for personal, educational, and internal use only.
+
+Any other use — including but not limited to commercial use, public distribution, sublicensing,
+or creation of modified or derivative versions — is strictly prohibited without prior written
+permission from the copyright holder.
+
+All versions of this software released publicly under the GPL prior to March 2025 remain licensed
+under the GPL. All versions contained in this repository are governed solely by this license.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE AUTHOR IS NOT LIABLE FOR
+ANY DAMAGES OR LOSSES ARISING FROM ITS USE.
+
