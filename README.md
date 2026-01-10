@@ -2,6 +2,19 @@
 
 Recycle Bin (Next) provides enhanced SMB safe-delete functionality for Unraid, including undo support, automated cleanup, and detailed logging.
 
+**Recycle Bin – Known Limitations (Read First)**
+
+Recycle Bin works only for deletes performed over SMB/CIFS.
+Deletes from the Unraid web UI, command line, Docker containers, or VMs bypass the recycle bin by design.
+
+Recycle Bin does not and cannot work on root shares (/mnt/user or \\tower\).
+Root shares are not real Samba shares. Recycle Bin is only supported on individual user shares.
+
+The recycle bin relies on Samba’s VFS recycle mechanism.
+This is a Samba limitation, not an Unraid-specific one.
+
+If your delete did not occur over SMB on an individual share, it will not be recycled.
+
 This plugin is an **independent alternative** to the official Unraid Recycle Bin plugin, offering bug fixes, enhanced safe-delete features, and logging.
 
 This project continues the plugin that was authored by **dlandon** with enhancements and bug fixes.
