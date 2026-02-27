@@ -27,7 +27,7 @@ Versions released after that date are governed by the custom license included in
 
 For support, discussions, and announcements, please use the Discussions tab.
 
-#Installing Recycle Bin
+# Installing Recycle Bin
 
 To install manually, enter one of the URLs below in the “Enter URL” field on the Unraid Plugins page.
 
