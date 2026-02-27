@@ -2,7 +2,7 @@
 
 Recycle Bin (Next) provides enhanced SMB safe-delete functionality for Unraid, including undo support, automated cleanup, and detailed logging.
 
-**Known Limitations (Read First)**
+### Known Limitations (Read First)
 
 Recycle Bin operates only on deletes performed over SMB/CIFS.
 
