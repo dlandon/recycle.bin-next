@@ -1,47 +1,50 @@
-# Recycle Bin - Next
+# Recycle Bin – Next
 
 Recycle Bin (Next) provides enhanced SMB safe-delete functionality for Unraid, including undo support, automated cleanup, and detailed logging.
 
-**Recycle Bin - Known Limitations (Read First)**
+**Known Limitations (Read First)**
 
-Recycle Bin works only for deletes performed over SMB/CIFS.
-Deletes from the Unraid web UI, command line, Docker containers, or VMs bypass the recycle bin by design.
+Recycle Bin operates only on deletes performed over SMB/CIFS.
 
-Recycle Bin does not and cannot work on root shares (/mnt/user or \\tower\).
-Root shares are not real Samba shares. Recycle Bin is only supported on individual user shares.
+Deletes from the Unraid web UI, command line, Docker containers, or virtual machines bypass the recycle bin by design.
 
-The recycle bin relies on Samba's VFS recycle mechanism.
-This is a Samba limitation, not an Unraid-specific one.
+Recycle Bin does not operate on root shares (/mnt/user or \\tower\).
+Root shares are not actual Samba shares. Only individual user shares are supported.
 
-If your delete did not occur over SMB on an individual share, it will not be recycled.
+The recycle bin relies on Samba’s VFS recycle mechanism.
+This is a Samba limitation.
 
-This plugin is an **independent alternative** to the official Unraid Recycle Bin plugin, offering bug fixes, enhanced safe-delete features, and logging.
+If a delete did not occur over SMB on an individual share, it will not be recycled.
 
-This project continues the plugin authored by **dlandon** with enhancements and bug fixes.
+About This Project
 
-Development in this repository begins from the codebase authored by **dlandon** and continues privately as of **March 2025**.
+This project continues development of the Recycle Bin plugin originally authored by Dan Landon, with enhancements, stability improvements, and expanded logging.
 
-All development and commits dated **March 2025** and later are licensed under the custom license included in this repository.
+Development in this repository reflects ongoing work by the original author.
 
-For support, discussions, and announcements, please use the **Discussions** tab in this repository.
+All versions publicly released under the GPL prior to March 1, 2025 remain licensed under the GPL.
+Versions released after that date are governed by the custom license included in this repository.
 
-# Installing Recycle Bin
+For support, discussions, and announcements, please use the Discussions tab.
 
-To install this plugin manually, enter either of the URLs below in the Enter URL field of the Plugins page.  The URL below will either install the latest or a specific version you choose.
+#Installing Recycle Bin
 
-Latest version: https://raw.githubusercontent.com/dlandon/recycle.bin-next/master/recycle.bin-next.plg
+To install manually, enter one of the URLs below in the “Enter URL” field on the Unraid Plugins page.
 
-Specific version: https://raw.githubusercontent.com/dlandon/recycle.bin-next/vYYYY.MM.DD/recycle.bin-next.plg
+Latest version:
+https://raw.githubusercontent.com/dlandon/recycle.bin-next/master/recycle.bin-next.plg
 
+Specific version:
+https://raw.githubusercontent.com/dlandon/recycle.bin-next/vYYYY.MM.DD/recycle.bin-next.plg
 
-Enter the release date "YYYY.MM.DD" of the specific version you want to install.  Be sure to keep the "v" before the release date.
-### Notice
+Replace YYYY.MM.DD with the release date of the version you wish to install.
+Include the leading v in the URL.
 
-This repository is independently maintained by the original author of the Recycle Bin plugin.
+### License Notice
 
-Individual Unraid users may install and use this software in accordance with the license terms.
+This repository is maintained by the original author of the Recycle Bin plugin.
 
-All versions of Recycle Bin released publicly under the GPL prior to March 2025 remain licensed under the GPL.
+Individual users may install and use this software in accordance with the license terms.
 
-Limetech or other third parties may not incorporate this code into Unraid or other products without a separate licensing agreement.
-
+Versions released prior to March 1, 2025 remain licensed under the GPL.
+Subsequent versions are licensed under the custom license included in this repository.
