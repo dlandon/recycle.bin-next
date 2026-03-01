@@ -17,18 +17,12 @@ Removal, alteration, or misrepresentation of authorship is strictly prohibited.
 ### 3. Restrictions
 
 Except as expressly permitted above, the following actions are prohibited without prior written permission from the copyright holder:
-
-Redistribution of the software, in whole or in part, in source or compiled form
-
-Public distribution via repositories, mirrors, websites, or application stores
-
-Distribution through any plugin catalog, marketplace, or automated installation system
-
-Commercial use, bundling, sublicensing, or resale
-
-Publication or distribution of modified or derivative versions
-
-Repackaging, rebranding, or representing the software as another party’s work
+- **Redistribution of the software, in whole or in part, in source or compiled form**
+- **Public distribution via repositories, mirrors, websites, or application stores**
+- **Distribution through any plugin catalog, marketplace, or automated installation system**
+- **Commercial use, bundling, sublicensing, or resale**
+- **Publication or distribution of modified or derivative versions**
+- **Repackaging, rebranding, or representing the software as another party’s work**
 
 ### 4. Platform Distribution
 
