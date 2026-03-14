@@ -36,7 +36,7 @@ Distribution of this software through any operating system marketplace, plugin s
 
 All versions of this software publicly released under the GNU General Public License (GPL) prior to March 18, 2025 remain licensed under the GPL.
 
-This license applies only to versions released after that date and to original work authored by the copyright holder.
+This license applies only to Next versions released after that date and to original work authored by the copyright holder.
 
 ### 6. Disclaimer
 

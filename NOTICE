@@ -8,7 +8,7 @@ This repository contains ongoing development of the above software.
 
 Versions of this software publicly released prior to March 18, 2025 were licensed under the GNU General Public License (GPL). Those historical releases remain licensed under the GPL in accordance with their original terms.
 
-Development in this repository continues from the same original codebase. However, all changes, additions, and modifications made on or after March 18, 2025 are original work authored by Dan Landon and are not licensed under the GPL.
+Development in this repository continues from the same original codebase as Next. However, all changes, additions, and modifications made on or after March 18, 2025 are original work authored by Dan Landon and are not licensed under the GPL.
 
 Only the portions of the software that were publicly released prior to March 18, 2025 remain subject to the GPL. All subsequent development is governed exclusively by the license contained in the LICENSE.md file.
 

@@ -57,6 +57,6 @@ This repository is maintained by the original author of the plugin.
 
 Versions of this software publicly released prior to **March 18, 2025** remain licensed under the GNU General Public License (GPL) in accordance with their original terms.
 
-Versions released after that date are governed by the plugin-specific license included in the `LICENSE.md` file in this repository.
+Versions released as Next after that date are governed by the plugin-specific license included in the `LICENSE.md` file in this repository.
 
 Users may install and use this software in accordance with the terms of that license.
