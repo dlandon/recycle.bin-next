@@ -47,7 +47,7 @@ This repository is the official distribution location for this plugin.
 
 Users should install the plugin directly from the URLs provided in this repository to ensure they receive authentic and up-to-date releases.
 
-Redistribution of this software through third-party repositories, plugin catalogs, mirrors, or repackaged installers is not authorized unless explicitly approved by the author.
+Redistribution of this software through third-party repositories, plugin catalogs, mirrors, or repackaged installers is not authorized unless explicitly approved in writing by the author.
 
 ## License
 
