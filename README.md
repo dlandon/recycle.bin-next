@@ -21,6 +21,8 @@ This repository contains the continued development of the Recycle Bin plugin ori
 
 Development in this repository is maintained by the original author and includes enhancements, stability improvements, and expanded logging.
 
+For support, feature requests, and discussions, please use the Discussions tab.
+
 ## Installing Recycle Bin - Next
 
 To install manually, enter one of the URLs below in the **Enter URL** field on the Unraid Plugins page.
