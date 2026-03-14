@@ -21,10 +21,6 @@ This repository contains the continued development of the Recycle Bin plugin ori
 
 Development in this repository is maintained by the original author and includes enhancements, stability improvements, and expanded logging.
 
-Versions of this software publicly released prior to **March 18, 2025** were licensed under the GNU General Public License (GPL) and remain licensed under the GPL in accordance with their original terms.
-
-Versions released after that date are governed by the **Recycle Bin - Next Personal Use License v1.0** included in this repository.
-
 ## Installing Recycle Bin - Next
 
 To install manually, enter one of the URLs below in the **Enter URL** field on the Unraid Plugins page.
