@@ -6,10 +6,29 @@ Author: Dan Landon
 
 This repository contains ongoing development of the above software.
 
-Versions of this software publicly released prior to March 18, 2025 were licensed under the GNU General Public License (GPL). Those historical releases remain licensed under the GPL in accordance with their original terms.
+Historical versions of this software were previously released under the
+GNU General Public License (GPL). Those versions remain licensed under
+the GPL in accordance with their original terms.
 
-Development in this repository continues from the same original codebase as Next. However, all changes, additions, and modifications made on or after March 18, 2025 are original work authored by Dan Landon and are not licensed under the GPL.
+The original GPL codebase and any modifications to that GPL code by
+third parties remain governed by the GPL.
 
-Only the portions of the software that were publicly released prior to March 18, 2025 remain subject to the GPL. All subsequent development is governed exclusively by the license contained in the LICENSE.md file.
+Beginning March 18, 2025, this repository also contains new development
+authored by Dan Landon as part of the "Next" series. These new components,
+enhancements, and other original work are not licensed under the GPL and
+are instead governed exclusively by the license contained in LICENSE.md.
 
-Redistribution, commercial use, or publication of modified or derivative versions of the post-March 18, 2025 work is prohibited without prior written permission from the copyright holder.
+This repository therefore contains a combination of GPL-licensed code
+from historical releases and new components authored by Dan Landon that
+are distributed under a separate license.
+
+Redistribution, commercial use, or publication of modified or derivative
+versions of the post-March 18, 2025 work authored by Dan Landon is
+prohibited without prior written permission from the copyright holder.
+
+The presence of GPL-licensed components from historical releases does
+not alter the licensing of new components and original work authored by
+Dan Landon that are distributed under the license defined in LICENSE.md.
+
+Nothing in this notice alters the license terms of the original GPL
+releases or grants additional rights beyond those defined in LICENSE.md.

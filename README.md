@@ -17,11 +17,7 @@ If a delete did not occur over SMB on an individual share, it will not be recycl
 
 ## About This Project
 
-This repository contains the continued development of the Recycle Bin plugin originally authored by Dan Landon.
-
-Development in this repository is maintained by the original author and includes enhancements, stability improvements, and expanded logging.
-
-For support, feature requests, and discussions, please use the Discussions tab.
+The Next series of this plugin is actively maintained by the original author and continues development of the project with ongoing fixes, improvements, and enhancements.
 
 ## Installing Recycle Bin - Next
 
@@ -41,6 +37,8 @@ Replace `YYYY.MM.DD` with the release date of the version you wish to install. I
 
 **Note:** The URL must begin with `https://raw.githubusercontent.com/`. GitHub page URLs (`github.com/.../blob/...`) will not install correctly.
 
+For support, feature requests, and discussions, please use the Discussions tab.
+
 ## Distribution
 
 This repository is the official distribution location for this plugin.
@@ -58,3 +56,11 @@ Versions of this software publicly released prior to **March 18, 2025** remain l
 Versions released as Next after that date are governed by the plugin-specific license included in the `LICENSE.md` file in this repository.
 
 Users may install and use this software in accordance with the terms of that license.
+
+## Support Development
+
+If this plugin has been useful to you and you'd like to support ongoing development, you can optionally make a donation:
+
+[Donate via PayPal](https://www.paypal.com/us/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EJGPC7B5CS66E)
+
+Support is appreciated, but never expected.
