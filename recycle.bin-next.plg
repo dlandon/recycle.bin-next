@@ -1,0 +1,249 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name		"recycle.bin-next">
+<!ENTITY plugin		"recycle.bin">
+<!ENTITY author		"dlandon">
+<!ENTITY version	"2026.03.27">
+<!ENTITY launch		"Settings/RecycleBin">
+<!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
+<!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
+<!ENTITY pluginURL	"&gitURL;/&name;.plg">
+<!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
+<!ENTITY MD5		"73f96f8a6aa4c13c8f94e187fc4f66bc">
+]>
+
+<PLUGIN	name="&plugin;"
+		author="&author;"
+		version="&version;"
+		launch="&launch;"
+		pluginURL="&pluginURL;"
+		support="&supportURL;"
+		icon="trash"
+		min="6.12.0">
+
+<CHANGES>
+##&name;
+###&version;
+- Notice: Initial release under the new license.
+- Notice: Minimum Unraid version changed to 6.12.  There have been too many UI changes to maintain backwards compatibility beyond 6.12.
+- Fix: Many page adjustments.
+- Fix: Inotify not stopped properly when recycle bin is stopped.
+- Fix: Start/Stop fixes to insure inotify is running.
+- Fix: UI changes for Unraid 7.2 responsive design.
+- Fix: Enable Unraid style tooltips.
+- Fix: Restart issues when adding a UD device with a recycle bin.  Restart changed to 'Reload' to minimize Samba restarts.
+- Fix: UD devices not handled properly in the recycle bin and trash sizes not updated timely.
+- Fix: Improve inotify logging robustness.
+- Fix: Change 'stopping_svcs' event to 'reload' the recycle bin, and not restart it to minimize Samba restarts.
+- Fix: Improve inotify logging robustness and don't log trim on every inotify log entry.
+- Fix: Adjust deleted files log page so buttons show on the bottom of the page.
+- Fix: Setting on the recycle bin causing Samba to crash.
+- Fix: Refactor trash size calculations for better performance and size calculations.
+- Fix: Recycle bin crons stopped working.
+- Fix: Inotify FIFO error terminating inotify.
+- Fix: Inotify.recycle.activity script does not terminate properly when there is an inotify error.
+- Fix: Recycle Bin not working properly on flash share.
+- Fix: Natural sorting of the shares on the shares page.
+- Fix: Rework fifo handling and check for enough watches in inotify script.
+- Fix: Change the date format to not zero fill the day.
+- Fix: Php error when trashsize file is missing.
+- Fix: Trashsize incorrect at times and displayed when the recycle bin is not running.
+- Fix: Show 'Flash (Boot Device)' when refering to the boot device on the Settings and Shares pages to be compatible with Unraid 7.3 internal boot.
+- Rem: Unnecessary tooltips.
+- Rem: The Samba '%P' parameter cannot be used in the recycle bin.  It isn't necessary and crashes Samba.
+- Add: Show status 'Running' indicator on table header that would not show in Unraid 7.2.
+- Add: Numeric inputs limited to numbers and min and max values added.
+- Add: Fixed possible intermittent visibility of Unraid server in Windows Network by ensuring WSD (Web Services Discovery) rebind occurs after Samba config reload.
+- Add: Notification when inotify terminates abnormally so it's clearer when the Recycle Bin logging stops working.  UI shows logging has stopped when it stops.
+- Add: Don't 'Reload' the recycle bin when adding a UD Device share if UD Devices are disabled in the Recycle Bin.
+- Add: Recycle Bin 'Reload' to adjust for devices being mounted by UD with a recycle bin or a share configuration change.  Restarting the Recycle Bin every time a UD device is added or a share is changed is thrashing the Recycle Bin and Samba.
+- Add: Disable recycle bin if SMB sharing is disabled.
+- Add: The 'appdata' and 'system' shares are now default excluded shares.
+- Add: Don't start the recycle bin if the array is not running.
+- Add: Share file delete log events are marked 'DELETE' and file deletes and purges from the .Recycle.Bin are marked 'REMOVE' in the log.
+- Add: Sort share trash sizes numerically and not by human readable values to be properly table sorted.
+- Add: Recycle Bin on exclusive shares and pool devices.
+- Add: Show all shares with a Recycle Bin on the settings page.
+- Add: Filter switch to show only today's log activity.
+- Add: Troubleshooting tab to show possible Recycle Bin issues requiring action and allow user to do a test delete to confirm Recycle Bin operation.
+- Add: Apply proper `.Recycle.Bin` permissions before shares are added to the Recycle Bin.  Incorrect permissions can cause the recycle bin to malfunction.
+- Add: Limit scope of inotify to the .Recycle.Bin only so other file activity doesn't create log entries.
+- Add: Debounce and delay on 'Reload' to prevent thrashing the Recycle Bin.  A 'Reload' event will occur if no other 'Reload' requests occur for 10 seconds.
+- Add: Bake in OS and meta files to exclude rather that entering them on the settings page so the excluded files are only user files to exclude.
+</CHANGES>
+
+<!--
+Copyright (C) 2015-2026 Dan Landon
+Licensed under the Recycle Bin - Next Personal Use License v1.0
+See LICENSE.md for full license terms.
+-->
+
+<!--
+Get the plugin bundle.
+-->
+<FILE Name="/boot/config/plugins/&plugin;/&name;-&version;.tgz">
+<URL>"&tgzURL;/&name;-&version;.tgz"</URL>
+<MD5>&MD5;</MD5>
+</FILE>
+
+<!--
+The 'pre-install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+#
+# The previous recycle bin plugin cannot be installed.
+#
+if [ -f /boot/config/plugins/&plugin;.plg ] ; then
+echo ""
+echo "-----------------------------------------------------------"
+echo " &name; has not been installed!"
+echo ""
+echo " The previous Recycle Bin plugin is installed."
+echo ""
+echo " You must uninstall the Recycle Bin plugin"
+echo " before installing Recycle Bin - Next."
+echo ""
+echo "-----------------------------------------------------------"
+echo ""
+exit 1
+fi
+
+#
+# Stop recycle bin.
+#
+echo "Stopping Recycle Bin..."
+
+/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin; stop 2>/dev/null
+
+#
+# Remove recycle bin cron file.
+#
+rm -f /boot/config/plugins/dynamix/recyclebin.cron
+
+#
+# Remove emhttp files so we can re-install.
+#
+rm -rf /usr/local/emhttp/plugins/&plugin;/* 2>/dev/null
+
+#
+# Remove old 'bundle' files.
+#
+rm -f $(ls /boot/config/plugins/&plugin;/&name;*.tgz 2>/dev/null | grep -v '&version;')
+</INLINE>
+</FILE>
+
+<!--
+Install the plugin bundle.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+#
+# Install the 'bundle'.
+#
+tar -xf /boot/config/plugins/&plugin;/&name;-&version;.tgz -C /usr/local/emhttp/plugins 2>/dev/null
+</INLINE>
+</FILE>
+
+<FILE Name="/boot/config/plugins/&plugin;/&plugin;.cfg">
+<INLINE>
+<![CDATA[
+SERVICE="disable"
+HIDE_FOLDER="no"
+BACKGROUND="yes"
+DIR_MODE=""
+PARAMETERS=""
+EXCLUDE=""
+EXCLUDE_DIRS=""
+EXCLUDE_SHARES="appdata,docker,domains,syslog,system"
+SCHEDRUN="no"
+AGE="7"
+NOTIFY="no"
+LOG="yes"
+INCLUDE_UD="no"
+]]>
+</INLINE>
+</FILE>
+
+<!--
+The 'post-install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+#
+# Create /tmp/ directory.
+#
+mkdir -p /tmp/&plugin;/
+
+#
+# Fix permissions of executable files
+#
+chmod +x /usr/local/emhttp/plugins/&plugin;/scripts/* /usr/local/emhttp/plugins/&plugin;/event/*
+
+#
+# Start recycle bin.
+#
+echo "Starting Recycle Bin..."
+
+at -f "/usr/local/emhttp/plugins/&plugin;/event/started" "now" 2>/dev/null
+
+#
+# Set the version of the plugin for the recycle bin page notification.
+#
+echo -n "&version;" > "/tmp/&plugin;/recycle_bin_version"
+
+echo ""
+echo "-----------------------------------------------------------"
+echo " &name; has been installed."
+echo " Copyright 2015-2026 &author;"
+echo " Version: &version;"
+echo "-----------------------------------------------------------"
+echo ""
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+#
+# Stop recycle bin in the background.
+#
+/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin; stop 2>/dev/null
+
+#
+# Remove plugin files from emhttp.
+#
+rm -rf /usr/local/emhttp/plugins/&plugin; 2>/dev/null
+
+#
+# Remove the recycle bin bundle so it will be downloaded if re-installed.
+#
+rm -rf /boot/config/plugins/&plugin;/&name;-&version;.tgz
+
+#
+# Remove RecycleBin browse symlinks.
+#
+rm -rf /mnt/RecycleBin
+
+#
+# Remove the pid file.
+#
+rm -rf /var/run/&plugin;.pid 2>/dev/null
+
+#
+# Remove the tmp directory.
+#
+rm -rf /tmp/&plugin; 2>/dev/null
+
+echo ""
+echo "-----------------------------------------------------------"
+echo " &name; has been removed."
+echo " Version: &version;"
+echo "-----------------------------------------------------------"
+echo ""
+</INLINE>
+</FILE>
+
+</PLUGIN>
