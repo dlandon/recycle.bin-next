@@ -4,6 +4,14 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.05.03
+
+### Fixes
+- Boot up generating an error and double start of the recycle bin.
+
+### Enhancements
+- Add command 'recycle-delete' to delete files to a Recycle Bin share from the command line
+
 ## 2026.03.27
 
 Initial release of the **Next** series maintained by the original author.

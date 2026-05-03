@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.03.27">
+<!ENTITY version	"2026.05.03">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"73f96f8a6aa4c13c8f94e187fc4f66bc">
+<!ENTITY MD5		"3ae1b29bfac7c7382cf8af3de080ddf4">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,12 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Move inotify lock files.
+- Fix: Reboot start up issue with var.ini not available.
+- Fix: Double start issue when array is first booted.
+- Add: Cli delete 'recycle-delete' that will delete files to a share recycle bin from the command line.  It only works on shares that are enabled in the Recycle Bin.
+
+###2027.03.27
 - Notice: Initial release under the new license.
 - Notice: Minimum Unraid version changed to 6.12.  There have been too many UI changes to maintain backwards compatibility beyond 6.12.
 - Fix: Many page adjustments.
@@ -181,6 +187,11 @@ mkdir -p /tmp/&plugin;/
 chmod +x /usr/local/emhttp/plugins/&plugin;/scripts/* /usr/local/emhttp/plugins/&plugin;/event/*
 
 #
+# Create symlink for the cli recycle delete
+#
+ln -sf /usr/local/emhttp/plugins/recycle.bin/scripts/recycle-delete /usr/local/sbin/recycle-delete
+
+#
 # Start recycle bin.
 #
 echo "Starting Recycle Bin..."
@@ -226,6 +237,11 @@ rm -rf /boot/config/plugins/&plugin;/&name;-&version;.tgz
 # Remove RecycleBin browse symlinks.
 #
 rm -rf /mnt/RecycleBin
+
+#
+# Remove the recycle delete symlink
+#
+rm -f /usr/local/sbin/recycle-delete
 
 #
 # Remove the pid file.
