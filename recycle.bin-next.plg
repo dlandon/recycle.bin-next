@@ -29,7 +29,7 @@
 - Fix: Double start issue when array is first booted.
 - Add: Cli delete 'recycle-delete' that will delete files to a share recycle bin from the command line.  It only works on shares that are enabled in the Recycle Bin.
 
-###2027.03.27
+###2026.03.27
 - Notice: Initial release under the new license.
 - Notice: Minimum Unraid version changed to 6.12.  There have been too many UI changes to maintain backwards compatibility beyond 6.12.
 - Fix: Many page adjustments.
