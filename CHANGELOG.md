@@ -4,6 +4,11 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.05.10
+
+### Fixes
+- Fixes to recycle-delete to work on the CWD and trigger inotify for File Activity and Recycle Bin.
+
 ## 2026.05.03
 
 ### Fixes

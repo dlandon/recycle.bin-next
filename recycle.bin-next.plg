@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.05.03">
+<!ENTITY version	"2026.05.10">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"3ae1b29bfac7c7382cf8af3de080ddf4">
+<!ENTITY MD5		"9598f76a2b7776da608cc0ddd135b27e">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,10 @@
 <CHANGES>
 ##&name;
 ###&version;
+- The 'recycle-delete' fails to delete from the CWD.
+- The 'recycle-delete' needs to move individual files when a directory is deleted and not just the directory.
+
+###2026.05.03
 - Fix: Move inotify lock files.
 - Fix: Reboot start up issue with var.ini not available.
 - Fix: Double start issue when array is first booted.
