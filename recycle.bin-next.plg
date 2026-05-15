@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.05.10">
+<!ENTITY version	"2026.05.15">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"9598f76a2b7776da608cc0ddd135b27e">
+<!ENTITY MD5		"f38aecd3e1636bed437018c046fe2e26">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,10 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Disk shares 'diskX' are not properly excluded from the Recycle Bin included shares when Disk Sharing is enabled.  The Recycle Bin works on user shares, not on disk shares.
+- Fix: Trash size calculations stop when there is an incorrect share configuration instead of skipping the incorrect one.
+
+###2026.05.10
 - The 'recycle-delete' fails to delete from the CWD.
 - The 'recycle-delete' needs to move individual files when a directory is deleted and not just the directory.
 

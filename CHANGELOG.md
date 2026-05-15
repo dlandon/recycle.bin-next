@@ -4,6 +4,11 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.05.15
+
+### Fixes
+- Disk shares incorrectly added to Recycle Bin and share size calculations broken when they are added.
+
 ## 2026.05.10
 
 ### Fixes
