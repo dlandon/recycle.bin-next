@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.05.15">
+<!ENTITY version	"2026.06.12">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"f38aecd3e1636bed437018c046fe2e26">
+<!ENTITY MD5		"29ddd3242348651a088bf08cd37fe619">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,11 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: UD remote shares added to the recycle bin when "Legacy Mount Point" is enabled.  Remote shares don't get a recycle bin.
+- Fix: During array shutdown, the heavy UD unmounting activity would get into a timing issue where a folder to monitor by inotify could go unavailable.  Inotify is restarted to fix this issue.
+- Add: Additional start/stop/reload logging to recycle bin operations.
+
+###2026.05.15
 - Fix: Disk shares 'diskX' are not properly excluded from the Recycle Bin included shares when Disk Sharing is enabled.  The Recycle Bin works on user shares, not on disk shares.
 - Fix: Trash size calculations stop when there is an incorrect share configuration instead of skipping the incorrect one.
 
@@ -33,7 +38,7 @@
 
 ###2026.05.03
 - Fix: Move inotify lock files.
-- Fix: Reboot start up issue with var.ini not available.
+- Fix: Reboot start up issue when var.ini is not available.
 - Fix: Double start issue when array is first booted.
 - Add: Cli delete 'recycle-delete' that will delete files to a share recycle bin from the command line.  It only works on shares that are enabled in the Recycle Bin.
 

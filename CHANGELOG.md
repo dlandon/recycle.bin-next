@@ -4,6 +4,17 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.06.12
+
+## Changes
+
+### Fixes
+- Fixed an issue that could cause unsupported network shares to be included in Recycle Bin monitoring under certain configurations.
+- Improved reliability during system shutdowns to prevent Recycle Bin monitoring from stopping unexpectedly.
+
+### Improvements
+- Added additional logging to provide better visibility into Recycle Bin activity and make troubleshooting easier.
+
 ## 2026.05.15
 
 ### Fixes
