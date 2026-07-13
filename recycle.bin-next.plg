@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.06.12">
+<!ENTITY version	"2026.07.13">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"29ddd3242348651a088bf08cd37fe619">
+<!ENTITY MD5		"cd571c5a5902666d9e76f6d5f4e96243">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,11 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Reworked the Recycle Bin reload architecture so reload is now a true queued operation. All reload activity is performed once after the debounce timeout expires, eliminating synchronous work from reload requests.
+- Fix: Do not complete a reload request if the Recycle Bin is stopped.
+- Add: Recycle Bin now supports the Custom SMB Shares plugin. Custom SMB Shares automatically inherit the recycle bin of their parent Unraid user share, providing seamless recycle bin support without creating nested recycle bins.
+
+###2026.06.12
 - Fix: UD remote shares added to the recycle bin when "Legacy Mount Point" is enabled.  Remote shares don't get a recycle bin.
 - Fix: During array shutdown, the heavy UD unmounting activity would get into a timing issue where a folder to monitor by inotify could go unavailable.  Inotify is restarted to fix this issue.
 - Add: Additional start/stop/reload logging to recycle bin operations.

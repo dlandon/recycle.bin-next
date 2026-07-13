@@ -4,9 +4,16 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
-## 2026.06.12
+## 2026.07.13
 
-## Changes
+### Fixes
+- Improved the Recycle Bin reload process by queuing and debouncing reload requests, making configuration updates more efficient and reliable.
+- Prevented reload requests from being processed while the Recycle Bin service is stopped.
+
+### Improvements
+- Added support for the Custom SMB Shares plugin. Custom SMB Shares automatically use the recycle bin of their parent Unraid user share, providing recycle bin support without creating nested recycle bins.
+
+## 2026.06.12
 
 ### Fixes
 - Fixed an issue that could cause unsupported network shares to be included in Recycle Bin monitoring under certain configurations.
