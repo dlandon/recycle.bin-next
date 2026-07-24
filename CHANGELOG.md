@@ -7,7 +7,7 @@ Development of the plugin will continue with ongoing fixes, enhancements, and ma
 ## 2026.07.24
 
 ### New Feature
-- Added a powerful log filter to both **Share Activity** and **Disk/Pool Activity** logs.
+- Added a powerful log filter to both **Deleted** and **Removed** logs.
   - Filter using one or more comma-separated search terms.
   - Prefix a term with `!` to exclude matching entries.
   - Supports `*` and `?` wildcards.
