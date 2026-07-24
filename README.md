@@ -1,7 +1,9 @@
 # Recycle Bin - Next
 Original author and continued development: Dan Landon
 
-Recycle Bin - Next provides enhanced SMB safe-delete functionality for Unraid, including undo support, automated cleanup, and detailed logging.
+Recycle Bin - Next provides enhanced SMB safe-delete functionality for Unraid, including restore support, automated cleanup, detailed logging, and powerful log filtering to quickly locate deleted files.
+
+The Recycle Bin Deleted and Removed log viewers support filtering by multiple search terms, wildcard matching (* and ?), and exclusion filters using !, making it easy to isolate the events you're looking for.
 
 ## Known Limitations (Read First)
 
@@ -11,9 +13,21 @@ Deletes from the Unraid web UI, command line, Docker containers, or virtual mach
 
 Recycle Bin does not operate on root shares (`/mnt/user` or `\\tower\`). Root shares are not actual Samba shares. Only individual user shares are supported.
 
-The recycle bin relies on Samba’s VFS recycle mechanism. This is a Samba limitation.
+The recycle bin relies on Samba's VFS recycle mechanism. This is a Samba limitation.
 
 If a delete did not occur over SMB on an individual share, it will not be recycled.
+
+## Features
+
+- Per-share `.Recycle.Bin` folders with restore support.
+- Automatic cleanup of recycled files based on age.
+- Deleted Files log for auditing recycle activity.
+- Flexible log filtering with multiple search terms, wildcard matching (`*` and `?`), and exclusion filters using `!`.
+- Compatible with Custom SMB Shares while storing recycled files in the parent Unraid share's recycle bin.
+
+## About This Project
+
+The Next series of this plugin is actively maintained by the original author and continues development of the project with ongoing fixes, improvements, and enhancements.
 
 ## About This Project
 

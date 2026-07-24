@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.07.13">
+<!ENTITY version	"2026.07.24">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"cd571c5a5902666d9e76f6d5f4e96243">
+<!ENTITY MD5		"d29a3c9765c00f9b163f2835a68e450a">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,11 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Add: Advanced log filtering to the Deleted and Removed log pages.
+- Add: Support for multiple comma-separated search terms and '*'/'?' wildcards.
+- Add: Filter help text and a clear filter button.
+
+###2026.07.13
 - Fix: Reworked the Recycle Bin reload architecture so reload is now a true queued operation. All reload activity is performed once after the debounce timeout expires, eliminating synchronous work from reload requests.
 - Fix: Do not complete a reload request if the Recycle Bin is stopped.
 - Add: Recycle Bin now supports the Custom SMB Shares plugin. Custom SMB Shares automatically inherit the recycle bin of their parent Unraid user share, providing seamless recycle bin support without creating nested recycle bins.

@@ -4,6 +4,15 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.07.24
+
+### New Feature
+- Added a powerful log filter to both **Share Activity** and **Disk/Pool Activity** logs.
+  - Filter using one or more comma-separated search terms.
+  - Prefix a term with `!` to exclude matching entries.
+  - Supports `*` and `?` wildcards.
+  - Filter settings are remembered between sessions.
+
 ## 2026.07.13
 
 ### Fixes
