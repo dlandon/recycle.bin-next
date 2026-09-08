@@ -4,6 +4,22 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.09.08
+
+This release improves Recycle Bin reliability and inotify logging process management.
+
+### Fixes
+- Improved Recycle Bin logging startup, shutdown, and restart reliability during configuration changes and rapid stop/start operations.
+- Improved inotify process management to prevent stale or duplicate logging processes and provide better startup failure detection and reporting.
+- Added timeout handling to prevent Recycle Bin operations from waiting indefinitely for background tasks.
+- Improved locking to prevent conflicts between Recycle Bin empty and aged-file removal operations.
+- Improved startup error handling when Recycle Bin configuration fails.
+- Removed automatic adjustment of the system inotify watch limit. Recycle Bin now uses the system-configured limit and reports when insufficient watches are available so the user can adjust the setting as needed.
+- Reorganized common Recycle Bin code to use `lib.php`.
+
+### Changes
+- Added a notice clarifying that the Dynamix Recycle Bin is separate from the SMB Recycle Bin.
+
 ## 2026.07.24
 
 ### New Feature

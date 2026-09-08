@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.07.24">
+<!ENTITY version	"2026.09.08">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"d29a3c9765c00f9b163f2835a68e450a">
+<!ENTITY MD5		"135e95afb48fb335abcb3af9fe37a242">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,16 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Improved Recycle Bin logging startup and shutdown reliability during configuration changes and rapid stop/start operations.
+- Fix: Improved inotify process management to prevent stale or duplicate logging processes.
+- Fix: Added timeout handling to prevent Recycle Bin operations from waiting indefinitely for background tasks.
+- Fix: Improved locking to prevent conflicting Recycle Bin empty and aged-file removal operations.
+- Fix: Improved startup error handling when Recycle Bin configuration fails.
+- Fix: Reorganize code to take advantage of the lib.php file and centralize common code.
+- Rem: Remove the inotify watches limit check.  Use the default inotify watches and log a message that there are not enough inotify watches so user can take action to correct.
+- Add: Notice shows that the 'Dynamix Recycle Bin' is separate from the SMB Recycle Bin.
+
+###2026.07.24
 - Add: Advanced log filtering to the Deleted and Removed log pages.
 - Add: Support for multiple comma-separated search terms and '*'/'?' wildcards.
 - Add: Filter help text and a clear filter button.
