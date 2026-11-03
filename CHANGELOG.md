@@ -4,6 +4,12 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.11.03
+
+- Improve installation validation, extraction failure handling, and bundle cleanup.
+- Improve startup and shutdown coordination, preventing updates or removal after a failed shutdown.
+- Replace `at` scheduling with direct delayed startup.
+
 ## 2026.09.08
 
 This release improves Recycle Bin reliability and inotify logging process management.

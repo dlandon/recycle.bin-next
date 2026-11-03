@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.09.08">
+<!ENTITY version	"2026.11.03">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"135e95afb48fb335abcb3af9fe37a242">
+<!ENTITY MD5		"7e3adf49911eecd9703c743ab5b8af31">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,16 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Propagated unexpected inotifywait failures to the Recycle Bin inotify manager's exit status.
+- Fix: Validate the plugin bundle before stopping Recycle Bin or removing installed files.
+- Fix: Report bundle extraction failures and abort installation.
+- Fix: Improve old bundle cleanup to preserve the exact current bundle.
+- Fix: Wait for pending startup before stopping Recycle Bin.
+- Fix: Propagate shutdown failures and abort installation or removal when stopping fails.
+- Fix: Prevent restart and update operations from starting Recycle Bin after a failed stop.
+- Fix: Replace 'at' startup scheduling with direct startup event execution, retaining the 30-second delay.
+
+###2026.09.08
 - Fix: Improved Recycle Bin logging startup and shutdown reliability during configuration changes and rapid stop/start operations.
 - Fix: Improved inotify process management to prevent stale or duplicate logging processes.
 - Fix: Added timeout handling to prevent Recycle Bin operations from waiting indefinitely for background tasks.
@@ -149,11 +159,24 @@ exit 1
 fi
 
 #
+# Validate the bundle before changing the installed plugin.
+#
+if ! tar -tf "/boot/config/plugins/&plugin;/&name;-&version;.tgz" >/dev/null 2>&amp;1; then
+	echo "ERROR: &name; bundle is missing or invalid. Installation aborted."
+	exit 1
+fi
+
+#
 # Stop recycle bin.
 #
 echo "Stopping Recycle Bin..."
 
-/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin; stop 2>/dev/null
+if [ -x "/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin;" ]; then
+	if ! "/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin;" stop; then
+		echo "ERROR: Unable to stop Recycle Bin. Installation aborted."
+		exit 1
+	fi
+fi
 
 #
 # Remove recycle bin cron file.
@@ -168,7 +191,11 @@ rm -rf /usr/local/emhttp/plugins/&plugin;/* 2>/dev/null
 #
 # Remove old 'bundle' files.
 #
-rm -f $(ls /boot/config/plugins/&plugin;/&name;*.tgz 2>/dev/null | grep -v '&version;')
+for bundle in /boot/config/plugins/&plugin;/&name;*.tgz; do
+	if [[ -f "$bundle" &amp;&amp; "$bundle" != "/boot/config/plugins/&plugin;/&name;-&version;.tgz" ]]; then
+		rm -f -- "$bundle"
+	fi
+done
 </INLINE>
 </FILE>
 
@@ -180,7 +207,10 @@ Install the plugin bundle.
 #
 # Install the 'bundle'.
 #
-tar -xf /boot/config/plugins/&plugin;/&name;-&version;.tgz -C /usr/local/emhttp/plugins 2>/dev/null
+if ! tar -xf "/boot/config/plugins/&plugin;/&name;-&version;.tgz" -C /usr/local/emhttp/plugins; then
+	echo "ERROR: Unable to extract &name; bundle. Installation aborted."
+	exit 1
+fi
 </INLINE>
 </FILE>
 
@@ -229,7 +259,13 @@ ln -sf /usr/local/emhttp/plugins/recycle.bin/scripts/recycle-delete /usr/local/s
 #
 echo "Starting Recycle Bin..."
 
-at -f "/usr/local/emhttp/plugins/&plugin;/event/started" "now" 2>/dev/null
+#
+# Run the startup event. It backgrounds the delayed service start.
+#
+if ! /bin/bash "/usr/local/emhttp/plugins/&plugin;/event/started"; then
+	echo "ERROR: &name; files are installed, but the startup event failed."
+	exit 1
+fi
 
 #
 # Set the version of the plugin for the recycle bin page notification.
@@ -252,9 +288,16 @@ The 'remove' script.
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
 #
-# Stop recycle bin in the background.
+# Stop Recycle Bin before removing its files.
 #
-/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin; stop 2>/dev/null
+echo "Stopping Recycle Bin..."
+
+if [ -x "/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin;" ]; then
+	if ! "/usr/local/emhttp/plugins/&plugin;/scripts/rc.&plugin;" stop; then
+		echo "ERROR: Unable to stop Recycle Bin. Removal aborted."
+		exit 1
+	fi
+fi
 
 #
 # Remove plugin files from emhttp.
