@@ -4,6 +4,20 @@ The **Next** series continues development of the plugin by the original author a
 
 Development of the plugin will continue with ongoing fixes, enhancements, and maintenance improvements.
 
+## 2026.11.20
+
+### Improved
+
+- Select exported SMB shares to exclude using a dropwown checklist.
+- Use **Additional Exclusion Patterns** for case-insensitive partial matches, Unassigned Devices shares, and custom SMB shares.
+- Limit recursive monitoring to configured Recycle Bin folders, including those on mounted Unassigned Devices.
+- Clarify that excluded shares are omitted from the Shares tab and their existing recycled files remain on disk.
+
+### Fixed
+
+- Apply Samba configuration when all shares are excluded. Activity logging stays idle until an eligible share becomes available.
+- Report unexpected inotify termination with its original exit status.
+
 ## 2026.11.03
 
 - Improve installation validation, extraction failure handling, and bundle cleanup.

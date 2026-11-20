@@ -3,13 +3,13 @@
 <!ENTITY name		"recycle.bin-next">
 <!ENTITY plugin		"recycle.bin">
 <!ENTITY author		"dlandon">
-<!ENTITY version	"2026.11.03">
+<!ENTITY version	"2026.11.20">
 <!ENTITY launch		"Settings/RecycleBin">
 <!ENTITY gitURL		"https://raw.githubusercontent.com/&author;/&name;/master">
 <!ENTITY tgzURL		"https://raw.githubusercontent.com/&author;/&name;/v&version;">
 <!ENTITY pluginURL	"&gitURL;/&name;.plg">
 <!ENTITY supportURL	"https://github.com/dlandon/&name;/discussions/">
-<!ENTITY MD5		"7e3adf49911eecd9703c743ab5b8af31">
+<!ENTITY MD5		"de02a84bcac04c751220e12db86b1df7">
 ]>
 
 <PLUGIN	name="&plugin;"
@@ -24,6 +24,13 @@
 <CHANGES>
 ##&name;
 ###&version;
+- Fix: Limit activity monitoring to configured Recycle Bin folders, including those on mounted Unassigned Devices.
+- Fix: Apply configuration changes when all shares are excluded. Activity logging stays idle until an eligible share becomes available.
+- Fix: Report unexpected termination of the inotify watcher.
+- Fix: Clarify that excluded shares are omitted from the Shares tab and their existing recycled files remain on disk.
+- Add: Select exported SMB shares to exclude using a checklist, with an Additional Exclusion Patterns field for case-insensitive partial matches, Unassigned Devices shares, and custom SMB shares.
+
+###2026.11.03
 - Fix: Propagated unexpected inotifywait failures to the Recycle Bin inotify manager's exit status.
 - Fix: Validate the plugin bundle before stopping Recycle Bin or removing installed files.
 - Fix: Report bundle extraction failures and abort installation.
